@@ -125,11 +125,11 @@ class MCB_12_33_HAC(object):
         Outputs: None'''
 
         #check chamber is not busy and no error status is set on temperature loop
-        assert(instr.busy_status == False)
-        assert(instr.error_status == 0)
+        assert(self.busy_status == False)
+        assert(self.error_status == 0)
 
         if (wait_until_temperature_reached):
-            timeout = _estimate_ramptime(self.instr.loop1_PV, temperature_target)
+            timeout = self._estimate_ramptime(self.instr.loop1_PV, temperature_target)
         
         self.instr.loop1_SP = temperature_target
         self.instr.set_event(0,1)
